@@ -11,6 +11,7 @@ struct ContentView: View {
     @State private var inputCode: String = ""
     @State private var formattedCode: String = ""
 
+
     
     var body: some View {
         
@@ -28,7 +29,7 @@ struct ContentView: View {
                         Text("Input Code")
                             .font(.headline)
                         
-                        TextEditor(text: $inputCode)
+                        CodeEditor(text: $inputCode)
                             .padding(10)
                             .background(
                                 RoundedRectangle(cornerRadius: 5)
@@ -50,7 +51,7 @@ struct ContentView: View {
                     VStack(alignment: .center) {
                         Text("Formatted Output")
                             .font(.headline)
-                        TextEditor(text: $formattedCode)
+                        CodeEditor(text: $formattedCode)
                             .background(.ultraThinMaterial)
                             .cornerRadius(5)
                             .disabled(true)
