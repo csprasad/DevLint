@@ -11,10 +11,7 @@ struct ContentView: View {
     @State private var inputCode: String = ""
     @State private var formattedCode: String = ""
 
-
-    
     var body: some View {
-        
         
         ZStack {
             LinearGradient(gradient: Gradient(colors: [Color.purple, Color.blue, Color.green]), startPoint: .topLeading,endPoint: .bottomTrailing).edgesIgnoringSafeArea(.all)
@@ -29,16 +26,16 @@ struct ContentView: View {
                         Text("Input Code")
                             .font(.headline)
                         
-                        CodeEditor(text: $inputCode)
-                            .padding(10)
-                            .background(
-                                RoundedRectangle(cornerRadius: 5)
-                                    .fill(.ultraThinMaterial)
-                            )
+                        VStack {
+                            HStack(alignment: .top, spacing: 0) {
+                                LineNumberView(text: inputCode)
+                                CodeEditor(text: $inputCode)
+                                    .frame(minWidth: 300, minHeight: 400)
+                                    .padding(.leading, 5)
+                            }
+                            .background(Color(NSColor.textBackgroundColor))
                             .cornerRadius(5)
-                            .padding()
-                        
-                            
+                        }
                         
                         Button(action: formatSwiftCode) {
                             Label("Format Code", systemImage: "wand.and.stars")
@@ -51,11 +48,17 @@ struct ContentView: View {
                     VStack(alignment: .center) {
                         Text("Formatted Output")
                             .font(.headline)
-                        CodeEditor(text: $formattedCode)
-                            .background(.ultraThinMaterial)
-                            .cornerRadius(5)
-                            .disabled(true)
                         
+                        VStack {
+                            HStack(alignment: .top, spacing: 0) {
+                                LineNumberView(text: formattedCode)
+                                CodeEditor(text: $formattedCode)
+                                    .frame(minWidth: 300, minHeight: 400)
+                                    .padding(.leading, 5)
+                            }
+                            .background(Color(NSColor.textBackgroundColor))
+                            .cornerRadius(5)
+                        }.disabled(true)
                         
                         Button(action: copyToClipboard) {
                             Label("Copy Code", systemImage: "doc.on.doc")
