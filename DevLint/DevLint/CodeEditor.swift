@@ -81,7 +81,7 @@ struct CodeEditor: NSViewRepresentable {
             let operators = "[+\\-*/%=&|<>!]+"
             let stringPattern = "\"(.*?)\""
             let numberPattern = "\\b\\d+(?:\\.\\d+)?\\b"
-            let commentPattern = "//.*|/\\*[^*]*\\*+(?:[^/*][^*]*\\*+)*/"
+            let commentPattern = "//[^\n]*|/\\*.*?\\*/"
             let booleanLiterals = ["true", "false"]
             
             let keywordRegex = try? NSRegularExpression(pattern: "\\b(" + keywords.joined(separator: "|") + ")\\b", options: [])
