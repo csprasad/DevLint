@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import SwiftFormat
+
 
 struct ContentView: View {
     @State private var inputCode: String = ""
@@ -76,21 +78,14 @@ struct ContentView: View {
     }
         
     func formatSwiftCode() {
-        let tempFile = "/tmp/temp.swift"
-        let outputFile = "/tmp/formatted.swift"
-        
+        let formatter = swiftFormatConfigurationFile
+
         do {
-            try inputCode.write(toFile: tempFile, atomically: true, encoding: .utf8)
-            let process = Process()
-            process.launchPath = "/usr/local/bin/swiftformat"
-            process.arguments = [tempFile, "--output", outputFile]
-            
-            try process.run()
-            process.waitUntilExit()
-            
-            formattedCode = try String(contentsOfFile: outputFile, encoding: .utf8)
+            let source = try SwiftFormat.format(inputCode)
+            formattedCode = source.output
         } catch {
-            formattedCode = "Error formatting code."
+            print("Formatting error: \(error)")
+            formattedCode = error.localizedDescription
         }
     }
     
