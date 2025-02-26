@@ -1,0 +1,17 @@
+--indent 4                         # Use 4 spaces instead of tabs
+--self remove                      # Remove unnecessary `self`
+--stripunusedargs closure-only      # Remove unused closure arguments
+--redundantSelf remove              # Remove redundant `self`
+--redundantReturn remove            # Remove redundant `return`
+--redundantParens remove            # Remove unnecessary parentheses
+--blankLinesAroundMark insert       # Insert blank lines around `MARK:` comments
+--wraparguments before-first        # Wrap function arguments on multiple lines
+--wrapcollections before-first      # Wrap collections on multiple lines
+--stripheader                       # Remove file headers
+--commas inline                     # Keep commas inline instead of at the start
+--ranges spaced                      # Add spacing around ranges (`1...5`)
+--trimwhitespace always             # Remove trailing whitespace
+--header ignore                     # Ignore file headers
+--fragment                           # Format partial code snippets
+--operatorfunc spaced               # Ensure spaces around operators in functions
+--disable redundantBlankLines        # Prevent adding extra blank lines
