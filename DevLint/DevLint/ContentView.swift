@@ -78,8 +78,6 @@ struct ContentView: View {
     }
         
     func formatSwiftCode() {
-        let formatter = swiftFormatConfigurationFile
-
         do {
             let source = try SwiftFormat.format(inputCode)
             formattedCode = source.output
