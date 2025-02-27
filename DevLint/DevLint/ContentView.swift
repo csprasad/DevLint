@@ -18,62 +18,70 @@ struct ContentView: View {
         ZStack {
             LinearGradient(gradient: Gradient(colors: [Color.purple, Color.blue, Color.green]), startPoint: .topLeading,endPoint: .bottomTrailing).edgesIgnoringSafeArea(.all)
             
-            VStack {
+            VStack(spacing: 10) {
+                // Title
                 Text("DevLint - Swift Code Formatter")
-                    .font(.title)
-                    .padding()
+                    .font(.largeTitle)
+                    .frame(height: 50)
+                    .frame(maxWidth: .infinity)
                 
-                HStack {
-                    VStack(alignment: .center) {
+                // Editor Section
+                HStack(spacing: 10) {
+                    // Input Editor
+                    VStack(spacing: 5) {
                         Text("Input Code")
                             .font(.headline)
+                            .frame(height: 30)
                         
-                        VStack {
-                            HStack(alignment: .top, spacing: 0) {
-                                LineNumberView(text: inputCode)
-                                CodeEditor(text: $inputCode)
-                                    .frame(minWidth: 300, minHeight: 400)
-                                    .padding(.leading, 5)
-                            }
-                            .background(Color(NSColor.textBackgroundColor))
-                            .cornerRadius(5)
+                        HStack(alignment: .top) {
+                            LineNumberView(text: inputCode)
+                            CodeEditor(text: $inputCode)
+//                                .frame(maxWidth: .infinity, minHeight: 300)
+//                                .padding(.leading, 5)
                         }
+                        .background(Color(NSColor.textBackgroundColor))
+                        .cornerRadius(5)
                         
                         Button(action: formatSwiftCode) {
                             Label("Format Code", systemImage: "wand.and.stars")
                         }
+                        .frame(height: 40)
+                        .frame(maxWidth: .infinity)
                         .buttonStyle(.borderedProminent)
                         .tint(Color.blue.opacity(0.2))
                         .controlSize(.large)
                     }
-                    
-                    VStack(alignment: .center) {
+
+                    // Formatted Output
+                    VStack(spacing: 5) {
                         Text("Formatted Output")
                             .font(.headline)
+                            .frame(height: 30)
                         
-                        VStack {
-                            HStack(alignment: .top, spacing: 0) {
-                                LineNumberView(text: formattedCode)
-                                CodeEditor(text: $formattedCode)
-                                    .frame(minWidth: 300, minHeight: 400)
-                                    .padding(.leading, 5)
-                            }
-                            .background(Color(NSColor.textBackgroundColor))
-                            .cornerRadius(5)
-                        }.disabled(true)
+                        HStack(alignment: .top) {
+                            LineNumberView(text: formattedCode)
+                            CodeEditor(text: $formattedCode)
+//                                .frame(maxWidth: .infinity, minHeight: 300)
+//                                .padding(.leading, 5)
+                        }
+                        .background(Color(NSColor.textBackgroundColor))
+                        .cornerRadius(5)
+                        .disabled(true)
                         
                         Button(action: copyToClipboard) {
                             Label("Copy Code", systemImage: "doc.on.doc")
                         }
+                        .frame(height: 40)
+                        .frame(maxWidth: .infinity)
                         .buttonStyle(.borderedProminent)
                         .tint(Color.green.opacity(0.2))
                         .controlSize(.large)
-                        
                     }
                 }
+                .padding(.horizontal, 20)
             }
-            .buttonStyle(.borderedProminent)
-            .padding()
+            .padding(.vertical, 10)
+//            .buttonStyle(.borderedProminent)
         }
     }
         
