@@ -84,6 +84,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C81EF1452D6B1D6E001B3B5E /* Build configuration list for PBXNativeTarget "DevLint" */;
 			buildPhases = (
+				C8C054902D741465000DAF40 /* Run SwiftFormat */,
 				C81EF1322D6B1D6A001B3B5E /* Sources */,
 				C81EF1332D6B1D6A001B3B5E /* Frameworks */,
 				C81EF1342D6B1D6A001B3B5E /* Resources */,
@@ -147,6 +148,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		C8C054902D741465000DAF40 /* Run SwiftFormat */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run SwiftFormat";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export PATH=\"/opt/homebrew/bin:/usr/local/bin:$PATH\"\n\nif which swiftformat >/dev/null; then\n    /usr/local/bin/swiftformat \"$SRCROOT\"\n    touch $(find . -name \"*.swift\")\nelse\n    echo \"warning: SwiftFormat not installed. Run 'brew install swiftformat'\"\nfi\n\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C81EF1322D6B1D6A001B3B5E /* Sources */ = {
