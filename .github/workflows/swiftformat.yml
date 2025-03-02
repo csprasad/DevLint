@@ -18,6 +18,9 @@ jobs:
         run: swiftformat .
       
       - name: Auto-fix Formatting & Commit
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_PAT.DevLint }}
+
         run: |
           swiftformat .
           git config --global user.name "github-actions[bot]"
