@@ -1,31 +1,29 @@
-name: SwiftFormat Check
+name: SwiftFormat PR Checks
 
 on:
-  push:
   pull_request:
+    branches:
+      - main
 
 jobs:
   swiftformat:
-    runs-on: macos-latest
+    name: Run SwiftFormat
+    runs-on: macos-latest  # Using macOS because SwiftFormat requires it
+
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Install SwiftFormat
         run: brew install swiftformat
 
-      - name: Run SwiftFormat
-        run: swiftformat .
-      
-      - name: Auto-fix Formatting & Commit
-        env:
-          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
-        run: |
-          swiftformat .
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add .
-          git commit -m "🔧 Auto-format Swift files" || echo "No changes to commit"
-          git push
+      - name: Run SwiftFormat (without committing)
+        run: swiftformat --lint .
 
-
+      - name: Post Formatting Suggestions to PR
+        uses: reviewdog/action-suggester@v1
+        with:
+          tool_name: SwiftFormat
+          fail_on_error: true
+          filter_mode: file
+          level: warning
