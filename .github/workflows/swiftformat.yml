@@ -19,7 +19,7 @@ jobs:
       
       - name: Auto-fix Formatting & Commit
         env:
-          GITHUB_TOKEN: ${{ secrets.GH_PAT.DevLint }}
+          GITHUB_TOKEN: ${{ secrets.GH_PAT.DEVLINT }}
 
         run: |
           swiftformat .
