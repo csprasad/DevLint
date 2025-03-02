@@ -18,7 +18,7 @@ jobs:
         run: brew install swiftformat
 
       - name: Run SwiftFormat (without committing)
-        run: swiftformat --lint .
+        run: swiftformat .
 
       - name: Post Formatting Suggestions to PR
         uses: reviewdog/action-suggester@v1
