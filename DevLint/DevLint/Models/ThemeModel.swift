@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Theme: Identifiable, Hashable {
+struct ThemeModel: Identifiable, Hashable {
     let id = UUID()
     let name: String
     let primaryColor: NSColor
@@ -37,7 +37,7 @@ struct Theme: Identifiable, Hashable {
     }
 
     // Implement Equatable conformance
-    static func == (lhs: Theme, rhs: Theme) -> Bool {
+    static func == (lhs: ThemeModel, rhs: ThemeModel) -> Bool {
         lhs.id == rhs.id
     }
 }

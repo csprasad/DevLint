@@ -11,7 +11,7 @@ struct ContentView: View {
     @StateObject var themeManager = ThemeManager()
 
     var body: some View {
-        CodeEditorView(themeManager: themeManager)
+        CodeEditorContainer(themeManager: themeManager)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
