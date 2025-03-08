@@ -6,7 +6,6 @@
 //
 
 import AppKit
-import Foundation
 import SwiftUI
 
 struct CustomTextEditor: NSViewRepresentable {
@@ -33,6 +32,7 @@ struct CustomTextEditor: NSViewRepresentable {
     }
 
     func updateNSView(_ textView: NSTextView, context _: Context) {
+//        print("Updating NSTextView with theme: \(themeManager.currentTheme.name)")
         if textView.string != text {
             textView.string = text
         }
@@ -40,8 +40,9 @@ struct CustomTextEditor: NSViewRepresentable {
         let selectedRange = textView.selectedRange()
 
         updateTextViewAppearance(textView)
+        
         let attributedString = NSMutableAttributedString(string: textView.string)
-        SyntaxHighlighter.highlight(attributedString, textView.effectiveAppearance)
+        SyntaxHighlighter.highlight(attributedString, textView.effectiveAppearance, using: themeManager.currentTheme)
         textView.textStorage?.beginEditing()
         textView.textStorage?.setAttributedString(attributedString)
         textView.textStorage?.endEditing()
@@ -68,9 +69,9 @@ struct CustomTextEditor: NSViewRepresentable {
 
     // Helper function to update the text view appearance
     private func updateTextViewAppearance(_ textView: NSTextView) {
-        textView.backgroundColor = NSColor(themeManager.currentTheme.backgroundColor)
-        textView.textColor = NSColor(themeManager.currentTheme.primaryColor)
-        textView.insertionPointColor = NSColor(themeManager.currentTheme.primaryColor)
-        textView.font = NSFont.monospacedSystemFont(ofSize: NSFont.systemFontSize, weight: .regular)
+        textView.backgroundColor = themeManager.currentTheme.backgroundColor
+        textView.textColor = themeManager.currentTheme.primaryColor
+        textView.insertionPointColor = themeManager.currentTheme.primaryColor
+        textView.font = NSFont.monospacedSystemFont(ofSize: 14, weight: .regular)
     }
 }

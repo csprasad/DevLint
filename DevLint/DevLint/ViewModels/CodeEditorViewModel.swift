@@ -20,15 +20,13 @@ class CodeEditorViewModel: ObservableObject {
     }
 
     func formatSwiftCode() {
-        print("Format button clicked!") // ✅ Check if this prints
-        do {
-            let source = try SwiftFormat.format(inputCode)
-            formattedCode = source.output
-            print("Formatted Output:", formattedCode) // ✅ Debugging
-        } catch {
-            print("Formatting error: \(error)")
-            formattedCode = error.localizedDescription
-        }
+            do {
+                let formatted = try SwiftFormat.format(inputCode, rules: FormatRules.default)
+                formattedCode = formatted.output
+            } catch {
+                print("Formatting error: \(error)")
+                formattedCode = error.localizedDescription
+            }
     }
 
     func copyToClipboard() {

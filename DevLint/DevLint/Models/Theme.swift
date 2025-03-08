@@ -10,9 +10,9 @@ import SwiftUI
 struct Theme: Identifiable, Hashable {
     let id = UUID()
     let name: String
-    let primaryColor: Color
-    let secondaryColor: Color
-    let backgroundColor: Color
+    let primaryColor: NSColor
+    let secondaryColor: NSColor
+    let backgroundColor: NSColor
     let font: Font
 
     // Syntax highlighting colors
@@ -38,6 +38,6 @@ struct Theme: Identifiable, Hashable {
 
     // Implement Equatable conformance
     static func == (lhs: Theme, rhs: Theme) -> Bool {
-        return lhs.id == rhs.id
+        lhs.id == rhs.id
     }
 }

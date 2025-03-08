@@ -6,19 +6,30 @@
 //
 
 import SwiftUI
+import AppKit
+
 
 class ThemeManager: ObservableObject {
-    @Published var currentTheme: Theme
+    @Published var currentTheme: Theme{
+        didSet {
+            print("currentTheme updated to: \(currentTheme.name)")
+        }
+    }
     @AppStorage("isDarkMode") var isDarkMode: Bool = false // Persists dark mode setting
+    {
+    didSet {
+        print("isDarkMode updated to: \(isDarkMode)")
+    }
+}
     @AppStorage("selectedThemeName") var selectedThemeName: String = "Default"
 
     let themes: [Theme] = [
         Theme(
             name: "Default",
-            primaryColor: .blue,
-            secondaryColor: .gray,
-            backgroundColor: .white,
-            font: .system(.body, design: .monospaced),
+            primaryColor: NSColor.black,
+            secondaryColor: NSColor.gray,
+            backgroundColor: NSColor.white,
+            font: .system(size: 14, weight: .regular, design: .monospaced),
             keywordColor: NSColor(hex: "#7089DA"),
             typeColor: NSColor(hex: "#C678DD"),
             operatorColor: NSColor(hex: "#F44747"),
@@ -36,10 +47,10 @@ class ThemeManager: ObservableObject {
         ),
         Theme(
             name: "Dark",
-            primaryColor: .white,
-            secondaryColor: .gray,
-            backgroundColor: .black,
-            font: .system(.body, design: .monospaced),
+            primaryColor: NSColor.white,
+            secondaryColor: NSColor.gray,
+            backgroundColor: NSColor.black,
+            font: .system(size: 14, weight: .regular, design: .monospaced),
             keywordColor: NSColor(hex: "#FF79C6"),
             typeColor: NSColor(hex: "#8BE9FD"),
             operatorColor: NSColor(hex: "#FF5555"),
@@ -57,10 +68,10 @@ class ThemeManager: ObservableObject {
         ),
         Theme(
             name: "Solarized",
-            primaryColor: .yellow,
-            secondaryColor: .green,
-            backgroundColor: Color(red: 0.99, green: 0.96, blue: 0.89),
-            font: .system(.body, design: .monospaced),
+            primaryColor: NSColor.yellow,
+            secondaryColor: NSColor.green,
+            backgroundColor: NSColor(red: 0.99, green: 0.96, blue: 0.89, alpha: 1),
+            font: .system(size: 14, weight: .regular, design: .monospaced),
             keywordColor: NSColor(hex: "#268BD2"),
             typeColor: NSColor(hex: "#B58900"),
             operatorColor: NSColor(hex: "#DC322F"),
@@ -79,7 +90,7 @@ class ThemeManager: ObservableObject {
     ]
 
     init() {
-        currentTheme = themes.first { $0.name == selectedThemeName } ?? themes[0]
+        self.currentTheme = themes[0]
         updateThemeForDarkMode()
     }
 
@@ -90,16 +101,57 @@ class ThemeManager: ObservableObject {
         }
     }
 
-    func toggleDarkMode() {
-        isDarkMode.toggle()
-        updateThemeForDarkMode()
-    }
+//    func toggleDarkMode() {
+//        isDarkMode.toggle()
+//        updateThemeForDarkMode()
+//        applyAppearance()
+//    }
 
     func updateThemeForDarkMode() {
-        if isDarkMode {
-            setTheme(name: "Dark")
-        } else {
-            setTheme(name: "Default")
-        }
+        setTheme(name: isDarkMode ? "Dark" : "Default")
+    }
+    
+    func applyAppearance() {
+        // Force the app to use the selected appearance (dark/light)
+        NSApp.appearance = NSAppearance(named: isDarkMode ? .darkAqua : .aqua)
     }
 }
+
+// Color extension for Hex conversion
+extension NSColor {
+    convenience init(hex: String, defaultColor: NSColor = .black) {
+        var hexSanitized = hex.trimmingCharacters(in: .whitespacesAndNewlines)
+        hexSanitized = hexSanitized.replacingOccurrences(of: "#", with: "")
+
+        var rgb: UInt64 = 0
+
+        var r: CGFloat = 0.0
+        var g: CGFloat = 0.0
+        var b: CGFloat = 0.0
+        var a: CGFloat = 1.0
+
+        let length = hexSanitized.count
+
+        guard Scanner(string: hexSanitized).scanHexInt64(&rgb) else {
+            self.init(cgColor: defaultColor.cgColor)!
+            return
+        }
+
+        if length == 6 {
+            r = CGFloat((rgb & 0xFF0000) >> 16) / 255.0
+            g = CGFloat((rgb & 0x00FF00) >> 8) / 255.0
+            b = CGFloat(rgb & 0x0000FF) / 255.0
+        } else if length == 8 {
+            r = CGFloat((rgb & 0xFF000000) >> 24) / 255.0
+            g = CGFloat((rgb & 0x00FF0000) >> 16) / 255.0
+            b = CGFloat((rgb & 0x0000FF00) >> 8) / 255.0
+            a = CGFloat(rgb & 0x000000FF) / 255.0
+        } else {
+            self.init(cgColor: defaultColor.cgColor)!
+            return
+        }
+
+        self.init(red: r, green: g, blue: b, alpha: a)
+    }
+}
+

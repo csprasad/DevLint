@@ -17,20 +17,20 @@ struct ThemeSelectorView: View {
 
             Spacer()
 
-            Picker("Theme", selection: Binding(
-                get: { themeManager.currentTheme.name },
-                set: { newTheme in themeManager.setTheme(name: newTheme) }
-            )) {
-                ForEach(themeManager.themes, id: \.name) { theme in
-                    Text(theme.name).tag(theme.name)
+            Picker("Theme", selection: $themeManager.currentTheme) {
+                ForEach(themeManager.themes) { theme in
+                    Text(theme.name)
+                        .tag(theme)
                 }
             }
             .pickerStyle(MenuPickerStyle())
             .frame(width: 150)
 
             Toggle("Dark Mode", isOn: $themeManager.isDarkMode)
-                .onChange(of: themeManager.isDarkMode) { _ in
-                    themeManager.toggleDarkMode()
+                .onChange(of: themeManager.isDarkMode) { newValue in
+                    print("Dark mode changed to: \(newValue)")
+                    themeManager.updateThemeForDarkMode()
+                    themeManager.applyAppearance()
                 }
         }
         .padding()

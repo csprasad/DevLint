@@ -14,7 +14,6 @@
 		C81EF13E2D6B1D6E001B3B5E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C81EF13D2D6B1D6E001B3B5E /* Assets.xcassets */; };
 		C81EF1412D6B1D6E001B3B5E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C81EF1402D6B1D6E001B3B5E /* Preview Assets.xcassets */; };
 		C88818B92D6B9C0D00C62F85 /* SwiftFormat in Frameworks */ = {isa = PBXBuildFile; productRef = C88818B82D6B9C0D00C62F85 /* SwiftFormat */; };
-		C89B30402D6B49CF00E1EFBF /* CodeEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C89B303F2D6B49CF00E1EFBF /* CodeEditor.swift */; };
 		C8AC32302D7AF297003F496D /* CodeEditorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8AC322F2D7AF297003F496D /* CodeEditorViewModel.swift */; };
 		C8AC32322D7AF2B7003F496D /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8AC32312D7AF2B7003F496D /* ThemeManager.swift */; };
 		C8AC32342D7AF3ED003F496D /* CustomTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8AC32332D7AF3ED003F496D /* CustomTextEditor.swift */; };
@@ -32,7 +31,6 @@
 		C81EF13D2D6B1D6E001B3B5E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C81EF1402D6B1D6E001B3B5E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		C81EF1422D6B1D6E001B3B5E /* DevLint.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DevLint.entitlements; sourceTree = "<group>"; };
-		C89B303F2D6B49CF00E1EFBF /* CodeEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeEditor.swift; sourceTree = "<group>"; };
 		C8AC322F2D7AF297003F496D /* CodeEditorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeEditorViewModel.swift; sourceTree = "<group>"; };
 		C8AC32312D7AF2B7003F496D /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 		C8AC32332D7AF3ED003F496D /* CustomTextEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextEditor.swift; sourceTree = "<group>"; };
@@ -76,12 +74,10 @@
 				C8F849B32D75AD81002090E5 /* Views */,
 				C8F849B62D75AF02002090E5 /* ViewModels */,
 				C8F849B92D75AF32002090E5 /* Utilities */,
-				C8F849BC2D75CF36002090E5 /* Resources */,
 				C81EF1392D6B1D6A001B3B5E /* DevLintApp.swift */,
 				C81EF13D2D6B1D6E001B3B5E /* Assets.xcassets */,
 				C81EF1422D6B1D6E001B3B5E /* DevLint.entitlements */,
 				C81EF13F2D6B1D6E001B3B5E /* Preview Content */,
-				C89B303F2D6B49CF00E1EFBF /* CodeEditor.swift */,
 			);
 			path = DevLint;
 			sourceTree = "<group>";
@@ -131,13 +127,6 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
-		C8F849BC2D75CF36002090E5 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -145,7 +134,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C81EF1452D6B1D6E001B3B5E /* Build configuration list for PBXNativeTarget "DevLint" */;
 			buildPhases = (
-				C8C054902D741465000DAF40 /* Run SwiftFormat */,
 				C81EF1322D6B1D6A001B3B5E /* Sources */,
 				C81EF1332D6B1D6A001B3B5E /* Frameworks */,
 				C81EF1342D6B1D6A001B3B5E /* Resources */,
@@ -210,27 +198,6 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		C8C054902D741465000DAF40 /* Run SwiftFormat */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Run SwiftFormat";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "export PATH=\"/opt/homebrew/bin:/usr/local/bin:$PATH\"\n\nif which swiftformat >/dev/null; then\n    /usr/local/bin/swiftformat \"$SRCROOT\"\n    touch $(find . -name \"*.swift\")\nelse\n    echo \"warning: SwiftFormat not installed. Run 'brew install swiftformat'\"\nfi\n\n";
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		C81EF1322D6B1D6A001B3B5E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -246,7 +213,6 @@
 				C8AC32322D7AF2B7003F496D /* ThemeManager.swift in Sources */,
 				C81EF13A2D6B1D6A001B3B5E /* DevLintApp.swift in Sources */,
 				C8F849B52D75AEF1002090E5 /* CodeEditorView.swift in Sources */,
-				C89B30402D6B49CF00E1EFBF /* CodeEditor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

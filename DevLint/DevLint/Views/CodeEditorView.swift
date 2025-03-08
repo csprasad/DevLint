@@ -27,18 +27,20 @@ struct CodeEditorView: View {
                         HStack(alignment: .top, spacing: 0) {
                             // Line numbers column
                             LineNumbersView(lineNumbers: $viewModel.lineNumbers, themeManager: themeManager)
-                                .foregroundColor(themeManager.currentTheme.secondaryColor)
+                                .foregroundColor(Color(themeManager.currentTheme.secondaryColor))
+                                .padding([.top,.bottom])
 
                             // Code editor
                             CustomTextEditor(text: $viewModel.inputCode, themeManager: themeManager)
                                 .font(themeManager.currentTheme.font)
-                                .padding(8)
+                                .padding([.top,.bottom])
                                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-                                .background(themeManager.currentTheme.backgroundColor)
+                                .background(Color(themeManager.currentTheme.backgroundColor))
                         }
                         .padding()
                     }
                     .onChange(of: viewModel.inputCode) { _ in
+                        print("onChange triggered in ContentView. New value: format")
                         viewModel.updateLineNumbers()
                     }
 
@@ -62,20 +64,18 @@ struct CodeEditorView: View {
                         HStack(alignment: .top, spacing: 0) {
                             // Line numbers column
                             LineNumbersView(lineNumbers: $viewModel.lineNumbers, themeManager: themeManager)
-                                .foregroundColor(themeManager.currentTheme.secondaryColor)
+                                .foregroundColor(Color(themeManager.currentTheme.secondaryColor))
+                                .padding([.top,.bottom])
 
                             // Code editor
                             CustomTextEditor(text: $viewModel.formattedCode, themeManager: themeManager)
                                 .font(themeManager.currentTheme.font)
-                                .padding(8)
+                                .padding([.top,.bottom])
                                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-                                .background(themeManager.currentTheme.backgroundColor)
+                                .background(Color(themeManager.currentTheme.backgroundColor))
                         }
                         .padding()
                         .disabled(true)
-                    }
-                    .onChange(of: viewModel.inputCode) { _ in
-                        viewModel.updateLineNumbers()
                     }
 
                     Button(action: {
@@ -110,5 +110,12 @@ struct LineNumbersView: View {
             }
         }
         .frame(width: 40)
+    }
+}
+
+extension Color {
+    /// Create a SwiftUI Color from a hex string.
+    init(hex: String) {
+        self.init(nsColor: NSColor(hex: hex))
     }
 }
