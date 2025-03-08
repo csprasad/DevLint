@@ -9,7 +9,7 @@ import AppKit
 import SwiftUI
 
 enum SyntaxHighlighter {
-    static func highlight(_ attributedString: NSMutableAttributedString, _ appearance: NSAppearance?, using theme: Theme) {
+    static func highlight(_ attributedString: NSMutableAttributedString, _ appearance: NSAppearance?, using theme: ThemeModel) {
         let defaultTextColor: NSColor = theme.primaryColor
 
         let text = attributedString.string

@@ -10,21 +10,12 @@ import AppKit
 
 
 class ThemeManager: ObservableObject {
-    @Published var currentTheme: Theme{
-        didSet {
-            print("currentTheme updated to: \(currentTheme.name)")
-        }
-    }
+    @Published var currentTheme: ThemeModel
     @AppStorage("isDarkMode") var isDarkMode: Bool = false // Persists dark mode setting
-    {
-    didSet {
-        print("isDarkMode updated to: \(isDarkMode)")
-    }
-}
     @AppStorage("selectedThemeName") var selectedThemeName: String = "Default"
 
-    let themes: [Theme] = [
-        Theme(
+    let themes: [ThemeModel] = [
+        ThemeModel(
             name: "Default",
             primaryColor: NSColor.black,
             secondaryColor: NSColor.gray,
@@ -45,7 +36,7 @@ class ThemeManager: ObservableObject {
             escapeColor: NSColor(hex: "#D19A66"),
             punctuationColor: NSColor(hex: "#ABB2BF")
         ),
-        Theme(
+        ThemeModel(
             name: "Dark",
             primaryColor: NSColor.white,
             secondaryColor: NSColor.gray,
@@ -66,7 +57,7 @@ class ThemeManager: ObservableObject {
             escapeColor: NSColor(hex: "#BD93F9"),
             punctuationColor: NSColor(hex: "#FFFFFF")
         ),
-        Theme(
+        ThemeModel(
             name: "Solarized",
             primaryColor: NSColor.yellow,
             secondaryColor: NSColor.green,
@@ -101,12 +92,6 @@ class ThemeManager: ObservableObject {
         }
     }
 
-//    func toggleDarkMode() {
-//        isDarkMode.toggle()
-//        updateThemeForDarkMode()
-//        applyAppearance()
-//    }
-
     func updateThemeForDarkMode() {
         setTheme(name: isDarkMode ? "Dark" : "Default")
     }
@@ -114,44 +99,6 @@ class ThemeManager: ObservableObject {
     func applyAppearance() {
         // Force the app to use the selected appearance (dark/light)
         NSApp.appearance = NSAppearance(named: isDarkMode ? .darkAqua : .aqua)
-    }
-}
-
-// Color extension for Hex conversion
-extension NSColor {
-    convenience init(hex: String, defaultColor: NSColor = .black) {
-        var hexSanitized = hex.trimmingCharacters(in: .whitespacesAndNewlines)
-        hexSanitized = hexSanitized.replacingOccurrences(of: "#", with: "")
-
-        var rgb: UInt64 = 0
-
-        var r: CGFloat = 0.0
-        var g: CGFloat = 0.0
-        var b: CGFloat = 0.0
-        var a: CGFloat = 1.0
-
-        let length = hexSanitized.count
-
-        guard Scanner(string: hexSanitized).scanHexInt64(&rgb) else {
-            self.init(cgColor: defaultColor.cgColor)!
-            return
-        }
-
-        if length == 6 {
-            r = CGFloat((rgb & 0xFF0000) >> 16) / 255.0
-            g = CGFloat((rgb & 0x00FF00) >> 8) / 255.0
-            b = CGFloat(rgb & 0x0000FF) / 255.0
-        } else if length == 8 {
-            r = CGFloat((rgb & 0xFF000000) >> 24) / 255.0
-            g = CGFloat((rgb & 0x00FF0000) >> 16) / 255.0
-            b = CGFloat((rgb & 0x0000FF00) >> 8) / 255.0
-            a = CGFloat(rgb & 0x000000FF) / 255.0
-        } else {
-            self.init(cgColor: defaultColor.cgColor)!
-            return
-        }
-
-        self.init(red: r, green: g, blue: b, alpha: a)
     }
 }
 
