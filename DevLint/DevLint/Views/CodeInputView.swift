@@ -13,11 +13,7 @@ struct CodeInputView: View {
 
     var body: some View {
         EditorSectionView(
-            title: "Input Code",
             text: $viewModel.inputCode,
-            buttonTitle: "Format Code",
-            buttonAction: { viewModel.formatSwiftCode() },
-            isButtonDisabled: viewModel.inputCode.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty,
             isEditable: true,
             themeManager: themeManager,
             lineNumbers: $viewModel.lineNumbers

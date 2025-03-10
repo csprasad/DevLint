@@ -44,24 +44,25 @@ class ThemeManager: ObservableObject {
         ),
         ThemeModel(
             name: "Dark",
-            primaryColor: NSColor.white,
-            secondaryColor: NSColor.gray,
-            backgroundColor: NSColor.black,
+            primaryColor: NSColor(hex: "#D9D9D9"),  // Light gray for readability
+            secondaryColor: NSColor(hex: "#2C2C2C"), // Dark secondary color
+            backgroundColor: NSColor(hex: "#1D1F21"), // Dark background
             font: .system(size: 14, weight: .regular, design: .monospaced),
-            keywordColor: NSColor(hex: "#FF79C6"),
-            typeColor: NSColor(hex: "#8BE9FD"),
-            operatorColor: NSColor(hex: "#FF5555"),
-            stringColor: NSColor(hex: "#50FA7B"),
-            numberColor: NSColor(hex: "#BD93F9"),
-            commentColor: NSColor(hex: "#6272A4"),
-            booleanColor: NSColor(hex: "#FFB86C"),
-            functionColor: NSColor(hex: "#F1FA8C"),
-            enumColor: NSColor(hex: "#8BE9FD"),
-            structColor: NSColor(hex: "#BD93F9"),
-            attributeColor: NSColor(hex: "#FF79C6"),
-            preprocessorColor: NSColor(hex: "#FF5555"),
-            escapeColor: NSColor(hex: "#BD93F9"),
-            punctuationColor: NSColor(hex: "#FFFFFF")
+            
+            keywordColor: NSColor(hex: "#C678DD"),     // Purple for keywords
+            typeColor: NSColor(hex: "#56B6C2"),        // Cyan for types
+            operatorColor: NSColor(hex: "#E06C75"),    // Red for operators
+            stringColor: NSColor(hex: "#98C379"),      // Green for strings
+            numberColor: NSColor(hex: "#D19A66"),      // Orange for numbers
+            commentColor: NSColor(hex: "#5C6370"),     // Dim gray-blue for comments
+            booleanColor: NSColor(hex: "#56B6C2"),     // Cyan for booleans
+            functionColor: NSColor(hex: "#61AFEF"),    // Blue for functions
+            enumColor: NSColor(hex: "#56B6C2"),        // Cyan for enums
+            structColor: NSColor(hex: "#D19A66"),      // Orange for structs
+            attributeColor: NSColor(hex: "#C678DD"),   // Purple for attributes
+            preprocessorColor: NSColor(hex: "#FF7B72"), // Red for preprocessor directives
+            escapeColor: NSColor(hex: "#D19A66"),      // Orange for escape sequences
+            punctuationColor: NSColor(hex: "#D9D9D9")
         ),
         ThemeModel(
             name: "Solarized",

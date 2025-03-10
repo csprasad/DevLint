@@ -38,10 +38,11 @@ struct CustomToolbar: View {
 //                })
 
                 HStack {
+                    // TODO: Link this button to real formating logic to show progress.. currently it just a showcase
                     ToolbarButton(icon: "wand.and.stars", text: "Format", tooltip: "Format Code", action: {
                         isFormatting = true
                         viewModel.formatSwiftCode()
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                             isFormatting = false
                         }
                     })

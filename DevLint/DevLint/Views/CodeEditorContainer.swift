@@ -19,13 +19,15 @@ struct CodeEditorContainer: View {
     }
 
     var body: some View {
-        VStack {
+        VStack(spacing: 0) {
             CustomToolbar(themeManager: themeManager, viewModel: viewModel, isFormatting: $isFormatting)
                 .frame(maxWidth: .infinity, maxHeight: 40)
-                .padding(.horizontal, 10)
+                .padding(.horizontal)
                 .background(Color(NSColor.windowBackgroundColor))
+                .overlay(Divider(), alignment: .top)
                 .overlay(Divider(), alignment: .bottom)
-            HStack {
+            
+            HStack(spacing: 1) {
                 CodeInputView(viewModel: viewModel, themeManager: themeManager)
                 CodeOutputView(viewModel: viewModel, themeManager: themeManager)
             }

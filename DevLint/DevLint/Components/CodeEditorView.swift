@@ -57,40 +57,40 @@ struct CodeEditorView: NSViewRepresentable {
         }
     }
 
-    // 🔹 Apply Performance Optimizations
+    //  Apply Performance Optimizations
     private func optimizeTextView(_ textView: NSTextView) {
         print(themeManager.currentTheme.name + "theme on text bg")
         let layoutManager = textView.layoutManager
         
-        // 🏎️ Enable Lazy Rendering
+        //  Enable Lazy Rendering
         layoutManager?.allowsNonContiguousLayout = true
 
-        // 🚀 Improve Scrolling Performance
+        //  Improve Scrolling Performance
         textView.translatesAutoresizingMaskIntoConstraints = false
         textView.isVerticallyResizable = true
         textView.isHorizontallyResizable = true
         textView.autoresizingMask = [.width, .height]
 
-        // 📏 Disable Line Wrapping
+        //  Disable Line Wrapping
         textView.textContainer?.heightTracksTextView = false
         textView.textContainer?.containerSize = CGSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude)
         textView.textContainer?.widthTracksTextView = false
         textView.textContainer?.lineBreakMode = .byClipping
     }
 
-    // 🔥 **Asynchronous Syntax Highlighting**
+    //  **Asynchronous Syntax Highlighting**
     private func asyncSyntaxHighlight(_ textView: NSTextView) {
         guard let textStorage = textView.textStorage else { return }
         let originalText = textStorage.string
         let selectedRange = textView.selectedRange()
 
-        // ✅ Capture appearance on the main thread BEFORE entering async
+        //  Capture appearance on the main thread BEFORE entering async
         let appearance = textView.effectiveAppearance
 
         DispatchQueue.global(qos: .userInitiated).async {
             let attributedString = NSMutableAttributedString(string: originalText)
             
-            // ✅ Now `appearance` is safe to use inside async block
+            //  Now `appearance` is safe to use inside async block
             SyntaxHighlighter.highlight(attributedString, appearance, using: themeManager.currentTheme)
 
             DispatchQueue.main.async {
@@ -110,9 +110,8 @@ struct CodeEditorView: NSViewRepresentable {
 
 
     
-    // 🔥 Update the theme dynamically if necessary (avoiding full reset)
+    //TODO: Update the theme dynamically if necessary (avoiding full reset) it not working properly
         private func updateThemeIfNeeded(for textView: NSTextView) {
-            // Apply the new theme only if it's different from the current one
             if textView.backgroundColor != themeManager.currentTheme.backgroundColor {
                 textView.backgroundColor = themeManager.currentTheme.backgroundColor
                 textView.textColor = themeManager.currentTheme.primaryColor
