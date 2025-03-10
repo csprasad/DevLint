@@ -29,14 +29,14 @@ struct CodeEditorView: NSViewRepresentable {
     }
 
     func updateNSView(_ textView: NSTextView, context _: Context) {
+        let selectedRange = textView.selectedRange()
         if textView.string != text {
             textView.string = text
         }
         
         updateThemeIfNeeded(for: textView)
-
-        let selectedRange = textView.selectedRange()
         asyncSyntaxHighlight(textView)
+        
         textView.setSelectedRange(selectedRange)
     }
 
@@ -80,20 +80,35 @@ struct CodeEditorView: NSViewRepresentable {
 
     // 🔥 **Asynchronous Syntax Highlighting**
     private func asyncSyntaxHighlight(_ textView: NSTextView) {
-        let text = textView.string // Get string on main thread
-        let appearance = textView.effectiveAppearance // Get appearance on main thread
-        
+        guard let textStorage = textView.textStorage else { return }
+        let originalText = textStorage.string
+        let selectedRange = textView.selectedRange()
+
+        // ✅ Capture appearance on the main thread BEFORE entering async
+        let appearance = textView.effectiveAppearance
+
         DispatchQueue.global(qos: .userInitiated).async {
-            let attributedString = NSMutableAttributedString(string: text)
+            let attributedString = NSMutableAttributedString(string: originalText)
+            
+            // ✅ Now `appearance` is safe to use inside async block
             SyntaxHighlighter.highlight(attributedString, appearance, using: themeManager.currentTheme)
 
             DispatchQueue.main.async {
-                textView.textStorage?.beginEditing()
-                textView.textStorage?.setAttributedString(attributedString)
-                textView.textStorage?.endEditing()
+                guard textView.string == originalText else { return } // Prevent overwriting new edits
+                
+                textStorage.beginEditing()
+                attributedString.enumerateAttributes(in: NSRange(location: 0, length: attributedString.length)) { attrs, range, _ in
+                    textStorage.setAttributes(attrs, range: range)
+                }
+                textStorage.endEditing()
+
+                // Restore cursor position
+                textView.setSelectedRange(selectedRange)
             }
         }
     }
+
+
     
     // 🔥 Update the theme dynamically if necessary (avoiding full reset)
         private func updateThemeIfNeeded(for textView: NSTextView) {
