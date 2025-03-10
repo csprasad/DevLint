@@ -33,6 +33,11 @@ class CodeEditorViewModel: ObservableObject {
         NSPasteboard.general.clearContents()
         NSPasteboard.general.setString(formattedCode, forType: .string)
     }
+    
+    func clear() {
+        inputCode = ""
+        formattedCode = ""
+    }
 
     func updateLineNumbers() {
         let lines = inputCode.components(separatedBy: .newlines)
