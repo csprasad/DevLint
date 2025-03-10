@@ -13,11 +13,7 @@ struct CodeOutputView: View {
 
     var body: some View {
         EditorSectionView(
-            title: "Formatted Output",
             text: $viewModel.formattedCode,
-            buttonTitle: "Copy Code",
-            buttonAction: { viewModel.copyToClipboard() },
-            isButtonDisabled: viewModel.formattedCode.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty,
             isEditable: false,
             themeManager: themeManager,
             lineNumbers: $viewModel.lineNumbers // ❗️ You might need a separate list for output line numbers
