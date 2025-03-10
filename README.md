@@ -11,6 +11,9 @@
 # DevLint 🚀  
 DevLint is a lightweight, native macOS application designed to help developers format, lint, and correct Swift syntax effortlessly. The project is currently in development, aiming to provide a minimal yet efficient tool for Swift developers who want a clean, readable, and well-structured codebase.
 
+## Preview
+![Custom Toolbar Demo](screenshot/App_screen.png)
+
 ## 🛠 Current Features (In Progress)
 
 - ✅ Basic Syntax Highlighting – Supports Swift keywords, types, operators, and comments.
