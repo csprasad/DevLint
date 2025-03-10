@@ -24,5 +24,11 @@ struct DevLintApp: App {
                     }
                 }
         }
+        
+        //Custom Toolbar
+        .windowStyle(HiddenTitleBarWindowStyle()) // Removes default macOS title bar
+        .commands {
+            ToolbarCommands() // Enables custom toolbar
+        }
     }
 }

@@ -13,6 +13,8 @@
 		C81EF13C2D6B1D6A001B3B5E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81EF13B2D6B1D6A001B3B5E /* ContentView.swift */; };
 		C81EF13E2D6B1D6E001B3B5E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C81EF13D2D6B1D6E001B3B5E /* Assets.xcassets */; };
 		C81EF1412D6B1D6E001B3B5E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C81EF1402D6B1D6E001B3B5E /* Preview Assets.xcassets */; };
+		C8601D452D7EEEA60058AEAB /* CustomToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8601D442D7EEEA60058AEAB /* CustomToolbar.swift */; };
+		C8601D472D7EFA770058AEAB /* ToolbarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8601D462D7EFA770058AEAB /* ToolbarButton.swift */; };
 		C8763EBD2D7CCC1E00D535E6 /* LineNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8763EBC2D7CCC1E00D535E6 /* LineNumberView.swift */; };
 		C8763EBF2D7CCCBE00D535E6 /* EditorSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8763EBE2D7CCCBE00D535E6 /* EditorSectionView.swift */; };
 		C8763EC12D7CCD1000D535E6 /* CodeInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8763EC02D7CCD1000D535E6 /* CodeInputView.swift */; };
@@ -21,7 +23,6 @@
 		C8AC32302D7AF297003F496D /* CodeEditorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8AC322F2D7AF297003F496D /* CodeEditorViewModel.swift */; };
 		C8AC32322D7AF2B7003F496D /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8AC32312D7AF2B7003F496D /* ThemeManager.swift */; };
 		C8AC32342D7AF3ED003F496D /* CodeEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8AC32332D7AF3ED003F496D /* CodeEditorView.swift */; };
-		C8AC32362D7AF40A003F496D /* ThemeSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8AC32352D7AF40A003F496D /* ThemeSelectorView.swift */; };
 		C8EF75F72D7CC0910023A5DE /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EF75F62D7CC0910023A5DE /* Extensions.swift */; };
 		C8F849B52D75AEF1002090E5 /* CodeEditorContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F849B42D75AEF1002090E5 /* CodeEditorContainer.swift */; };
 		C8F849BB2D75AF4A002090E5 /* SyntaxHighlighter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F849BA2D75AF4A002090E5 /* SyntaxHighlighter.swift */; };
@@ -36,6 +37,8 @@
 		C81EF13D2D6B1D6E001B3B5E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C81EF1402D6B1D6E001B3B5E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		C81EF1422D6B1D6E001B3B5E /* DevLint.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DevLint.entitlements; sourceTree = "<group>"; };
+		C8601D442D7EEEA60058AEAB /* CustomToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomToolbar.swift; sourceTree = "<group>"; };
+		C8601D462D7EFA770058AEAB /* ToolbarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarButton.swift; sourceTree = "<group>"; };
 		C8763EBC2D7CCC1E00D535E6 /* LineNumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineNumberView.swift; sourceTree = "<group>"; };
 		C8763EBE2D7CCCBE00D535E6 /* EditorSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorSectionView.swift; sourceTree = "<group>"; };
 		C8763EC02D7CCD1000D535E6 /* CodeInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeInputView.swift; sourceTree = "<group>"; };
@@ -43,7 +46,6 @@
 		C8AC322F2D7AF297003F496D /* CodeEditorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeEditorViewModel.swift; sourceTree = "<group>"; };
 		C8AC32312D7AF2B7003F496D /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 		C8AC32332D7AF3ED003F496D /* CodeEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeEditorView.swift; sourceTree = "<group>"; };
-		C8AC32352D7AF40A003F496D /* ThemeSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeSelectorView.swift; sourceTree = "<group>"; };
 		C8EF75F62D7CC0910023A5DE /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		C8F849B42D75AEF1002090E5 /* CodeEditorContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeEditorContainer.swift; sourceTree = "<group>"; };
 		C8F849BA2D75AF4A002090E5 /* SyntaxHighlighter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyntaxHighlighter.swift; sourceTree = "<group>"; };
@@ -147,7 +149,6 @@
 		C8EF75F52D7CC0370023A5DE /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				C8AC32352D7AF40A003F496D /* ThemeSelectorView.swift */,
 				C8AC32332D7AF3ED003F496D /* CodeEditorView.swift */,
 			);
 			path = Components;
@@ -162,6 +163,8 @@
 				C8763EBE2D7CCCBE00D535E6 /* EditorSectionView.swift */,
 				C8763EC02D7CCD1000D535E6 /* CodeInputView.swift */,
 				C8763EC22D7CCD4000D535E6 /* CodeOutputView.swift */,
+				C8601D442D7EEEA60058AEAB /* CustomToolbar.swift */,
+				C8601D462D7EFA770058AEAB /* ToolbarButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -259,17 +262,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				C8F849BB2D75AF4A002090E5 /* SyntaxHighlighter.swift in Sources */,
+				C8601D472D7EFA770058AEAB /* ToolbarButton.swift in Sources */,
 				C8AC32342D7AF3ED003F496D /* CodeEditorView.swift in Sources */,
 				C8AC32302D7AF297003F496D /* CodeEditorViewModel.swift in Sources */,
 				C81EF13C2D6B1D6A001B3B5E /* ContentView.swift in Sources */,
 				C813D9D82D7AED5500833098 /* CodeEditorModel.swift in Sources */,
 				C813D9DA2D7AED7600833098 /* ThemeModel.swift in Sources */,
-				C8AC32362D7AF40A003F496D /* ThemeSelectorView.swift in Sources */,
 				C8763EBD2D7CCC1E00D535E6 /* LineNumberView.swift in Sources */,
 				C8763EC12D7CCD1000D535E6 /* CodeInputView.swift in Sources */,
 				C8763EC32D7CCD4000D535E6 /* CodeOutputView.swift in Sources */,
 				C8AC32322D7AF2B7003F496D /* ThemeManager.swift in Sources */,
 				C8763EBF2D7CCCBE00D535E6 /* EditorSectionView.swift in Sources */,
+				C8601D452D7EEEA60058AEAB /* CustomToolbar.swift in Sources */,
 				C81EF13A2D6B1D6A001B3B5E /* DevLintApp.swift in Sources */,
 				C8EF75F72D7CC0910023A5DE /* Extensions.swift in Sources */,
 				C8F849B52D75AEF1002090E5 /* CodeEditorContainer.swift in Sources */,

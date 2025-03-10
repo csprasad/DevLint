@@ -11,10 +11,16 @@ import AppKit
 
 class ThemeManager: ObservableObject {
     @Published var currentTheme: ThemeModel
-    @AppStorage("isDarkMode") var isDarkMode: Bool = false // Persists dark mode setting
-    @AppStorage("selectedThemeName") var selectedThemeName: String = "Default"
+    @AppStorage("selectedThemeName") var selectedTheme: String = "Default"
+    @AppStorage("isDarkMode") var isDarkMode: Bool = false { // Persists dark mode setting
+        didSet {
+            updateThemeForDarkMode()
+            applyAppearance()
+        }
+    }
+    
 
-    let themes: [ThemeModel] = [
+    let availableThemes: [ThemeModel] = [
         ThemeModel(
             name: "Default",
             primaryColor: NSColor.black,
@@ -81,14 +87,14 @@ class ThemeManager: ObservableObject {
     ]
 
     init() {
-        self.currentTheme = themes[0]
+        self.currentTheme = availableThemes[0]
         updateThemeForDarkMode()
     }
 
     func setTheme(name: String) {
-        if let newTheme = themes.first(where: { $0.name == name }) {
+        if let newTheme = availableThemes.first(where: { $0.name == name }) {
             currentTheme = newTheme
-            selectedThemeName = name
+            selectedTheme = name
         }
     }
 
@@ -101,4 +107,3 @@ class ThemeManager: ObservableObject {
         NSApp.appearance = NSAppearance(named: isDarkMode ? .darkAqua : .aqua)
     }
 }
-
