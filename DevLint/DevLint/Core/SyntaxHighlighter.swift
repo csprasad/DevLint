@@ -40,7 +40,7 @@ enum SyntaxHighlighter {
             ("\\b(true|false|nil)\\b", theme.booleanColor),
 
             // Comments (Single-line and Multi-line)
-            ("//.*", theme.commentColor),
+            ("//[^\\n]*", theme.commentColor),
             ("/\\*.*?\\*/", theme.commentColor),
 
             // Attributes (@State, @Binding, @Environment)

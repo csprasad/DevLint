@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import SwiftFormat
 import SwiftUI
 
 class CodeEditorViewModel: ObservableObject {
@@ -20,13 +19,7 @@ class CodeEditorViewModel: ObservableObject {
     }
 
     func formatSwiftCode() {
-            do {
-                let formatted = try SwiftFormat.format(inputCode, rules: FormatRules.default)
-                formattedCode = formatted.output
-            } catch {
-                print("Formatting error: \(error)")
-                formattedCode = error.localizedDescription
-            }
+        formattedCode = FormatterManager.shared.format(code: inputCode)
     }
 
     func copyToClipboard() {

@@ -23,6 +23,8 @@
 		C8AC32302D7AF297003F496D /* CodeEditorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8AC322F2D7AF297003F496D /* CodeEditorViewModel.swift */; };
 		C8AC32322D7AF2B7003F496D /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8AC32312D7AF2B7003F496D /* ThemeManager.swift */; };
 		C8AC32342D7AF3ED003F496D /* CodeEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8AC32332D7AF3ED003F496D /* CodeEditorView.swift */; };
+		C8B705452D88410500034249 /* CodeFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B705442D88410500034249 /* CodeFormatter.swift */; };
+		C8B705482D88415700034249 /* SwiftFormatAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B705472D88415700034249 /* SwiftFormatAdapter.swift */; };
 		C8EF75F72D7CC0910023A5DE /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EF75F62D7CC0910023A5DE /* Extensions.swift */; };
 		C8F849B52D75AEF1002090E5 /* CodeEditorContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F849B42D75AEF1002090E5 /* CodeEditorContainer.swift */; };
 		C8F849BB2D75AF4A002090E5 /* SyntaxHighlighter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F849BA2D75AF4A002090E5 /* SyntaxHighlighter.swift */; };
@@ -46,6 +48,8 @@
 		C8AC322F2D7AF297003F496D /* CodeEditorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeEditorViewModel.swift; sourceTree = "<group>"; };
 		C8AC32312D7AF2B7003F496D /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 		C8AC32332D7AF3ED003F496D /* CodeEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeEditorView.swift; sourceTree = "<group>"; };
+		C8B705442D88410500034249 /* CodeFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeFormatter.swift; sourceTree = "<group>"; };
+		C8B705472D88415700034249 /* SwiftFormatAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftFormatAdapter.swift; sourceTree = "<group>"; };
 		C8EF75F62D7CC0910023A5DE /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		C8F849B42D75AEF1002090E5 /* CodeEditorContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeEditorContainer.swift; sourceTree = "<group>"; };
 		C8F849BA2D75AF4A002090E5 /* SyntaxHighlighter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyntaxHighlighter.swift; sourceTree = "<group>"; };
@@ -114,6 +118,23 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		C8B705462D88413600034249 /* Formatters */ = {
+			isa = PBXGroup;
+			children = (
+				C8B705442D88410500034249 /* CodeFormatter.swift */,
+				C8B705472D88415700034249 /* SwiftFormatAdapter.swift */,
+			);
+			path = Formatters;
+			sourceTree = "<group>";
+		};
+		C8B705492D88454100034249 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				C8EF75F62D7CC0910023A5DE /* Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		C8EF75F12D7CBBD30023A5DE /* App */ = {
 			isa = PBXGroup;
 			children = (
@@ -180,7 +201,8 @@
 		C8F849B92D75AF32002090E5 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				C8EF75F62D7CC0910023A5DE /* Extensions.swift */,
+				C8B705492D88454100034249 /* Extensions */,
+				C8B705462D88413600034249 /* Formatters */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -273,9 +295,11 @@
 				C8763EC32D7CCD4000D535E6 /* CodeOutputView.swift in Sources */,
 				C8AC32322D7AF2B7003F496D /* ThemeManager.swift in Sources */,
 				C8763EBF2D7CCCBE00D535E6 /* EditorSectionView.swift in Sources */,
+				C8B705482D88415700034249 /* SwiftFormatAdapter.swift in Sources */,
 				C8601D452D7EEEA60058AEAB /* CustomToolbar.swift in Sources */,
 				C81EF13A2D6B1D6A001B3B5E /* DevLintApp.swift in Sources */,
 				C8EF75F72D7CC0910023A5DE /* Extensions.swift in Sources */,
+				C8B705452D88410500034249 /* CodeFormatter.swift in Sources */,
 				C8F849B52D75AEF1002090E5 /* CodeEditorContainer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -408,6 +432,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"DevLint/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -433,6 +458,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"DevLint/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
