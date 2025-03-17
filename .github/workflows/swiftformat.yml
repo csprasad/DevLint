@@ -14,11 +14,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install SwiftFormat
-        run: brew install swiftformat
+      - name: Set Up Swift
+        run: swift --version  # Ensure Swift is installed
 
-      - name: Run SwiftFormat and Fix Issues
-        run: swiftformat .
+      - name: Resolve Swift Packages
+        run: swift package resolve  # Ensures SwiftFormat is fetched correctly
+
+      - name: Run SwiftFormat (Using SPM)
+        run: swift run swiftformat .
 
       - name: Commit and Push Fixes
         run: |
