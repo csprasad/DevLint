@@ -20,14 +20,5 @@ jobs:
       - name: Resolve Swift Packages
         run: swift package resolve  # Ensures SwiftFormat is fetched correctly
 
-      - name: Run SwiftFormat (Using SPM)
+      - name: Run SwiftFormat (Auto-Fix)
         run: swift run swiftformat .
-
-      - name: Commit and Push Fixes
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add .
-          git diff --quiet && git diff --staged --quiet || git commit -m "Apply SwiftFormat fixes"
-          git push
-        continue-on-error: true
