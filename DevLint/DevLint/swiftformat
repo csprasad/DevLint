@@ -1,17 +1,39 @@
---indent 4                         # Use 4 spaces instead of tabs
---self remove                      # Remove unnecessary `self`
---stripunusedargs closure-only      # Remove unused closure arguments
---redundantSelf remove              # Remove redundant `self`
---redundantReturn remove            # Remove redundant `return`
---redundantParens remove            # Remove unnecessary parentheses
---blankLinesAroundMark insert       # Insert blank lines around `MARK:` comments
---wraparguments before-first        # Wrap function arguments on multiple lines
---wrapcollections before-first      # Wrap collections on multiple lines
---stripheader                       # Remove file headers
---commas inline                     # Keep commas inline instead of at the start
---ranges spaced                      # Add spacing around ranges (`1...5`)
---trimwhitespace always             # Remove trailing whitespace
---header ignore                     # Ignore file headers
---fragment                           # Format partial code snippets
---operatorfunc spaced               # Ensure spaces around operators in functions
---disable redundantBlankLines        # Prevent adding extra blank lines
+# Indentation & Line Breaks
+--indent 4                   # Use 4 spaces for indentation
+--linebreaks lf              # Use LF (Unix-style) line endings
+--maxwidth 100               # Wrap lines exceeding 100 characters
+
+# Whitespace & Operators
+--operatorfunc spaced        # Ensure spaces around operators in functions
+--spacearoundoperators       # Ensure spaces around operators (e.g., `a + b`)
+--ranges spaced              # Add spacing around ranges (`1...5`)
+--trimwhitespace always      # Remove trailing whitespace
+
+# Self & Redundant Elements
+--self remove                # Remove unnecessary `self`
+--redundantSelf remove       # Remove redundant `self`
+--redundantReturn remove     # Remove redundant `return`
+--redundantget remove        # Remove `get {}` in computed properties
+--redundantParens remove     # Remove unnecessary parentheses
+--redundantimports remove    # Remove unused `import` statements
+
+# Braces & Control Flow
+--braces always              # Ensure braces are always used, even for single-line statements
+--strongifiedoutlets true    # Ensure strong references for IBOutlet properties
+
+# Arguments & Collections
+--wraparguments before-first # Wrap function arguments on multiple lines
+--wrapcollections before-first # Wrap collections on multiple lines
+--stripunusedargs closure-only # Remove unused closure arguments
+
+# Comments & Formatting
+--blankLinesAroundMark insert # Insert blank lines around `MARK:` comments
+--comments ignore            # Preserve comments without reformatting
+--stripheader                # Remove file headers
+--header ignore              # Ignore file headers
+
+# Miscellaneous
+--fragment                   # Format partial code snippets
+--empty void spaced          # Format `{}` as `{ }` for better readability
+--disable redundantBlankLines # Prevent adding extra blank lines
+--commas always              # Enforce trailing commas in multiline collections
