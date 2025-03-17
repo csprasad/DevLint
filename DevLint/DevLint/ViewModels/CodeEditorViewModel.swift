@@ -6,11 +6,31 @@
 //
 
 import Foundation
-import SwiftFormat
 import SwiftUI
 
 class CodeEditorViewModel: ObservableObject {
-    @Published var inputCode: String = "// Write your code here...\n\nfunc helloWorld() {\n    print(\"Hello, World!\")\n}"
+    @Published var inputCode: String = """
+import UIKit
+import Foundation
+import Foundation  // Redundant import should be removed
+
+class ExampleClass {
+let name:String
+init(name:String){self.name=name} // Missing spaces & redundant `self.`
+
+func greet () ->String {
+return"Hello, \\(self.name)"} // Bad spacing, redundant `self.`
+
+var computedProperty: Int {
+get { return 42 } // `get {}` should be removed
+}
+
+func doSomething(){
+if let x=Optional(5) {print(x)} // Bad spacing, `if let` should be `guard let`
+}
+}
+
+"""
     @Published var lineNumbers: [Int] = Array(1 ... 50)
     @Published var themeManager: ThemeManager
     @Published var formattedCode: String = ""
@@ -20,13 +40,7 @@ class CodeEditorViewModel: ObservableObject {
     }
 
     func formatSwiftCode() {
-            do {
-                let formatted = try SwiftFormat.format(inputCode, rules: FormatRules.default)
-                formattedCode = formatted.output
-            } catch {
-                print("Formatting error: \(error)")
-                formattedCode = error.localizedDescription
-            }
+        formattedCode = FormatterManager.shared.format(code: inputCode)
     }
 
     func copyToClipboard() {
