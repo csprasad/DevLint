@@ -1,4 +1,4 @@
-name: SwiftFormat PR Checks
+name: SwiftFormat Auto-Fix
 
 on:
   pull_request:
@@ -8,7 +8,7 @@ on:
 jobs:
   swiftformat:
     name: Run SwiftFormat
-    runs-on: macos-latest  # Using macOS because SwiftFormat requires it
+    runs-on: macos-latest
 
     steps:
       - name: Checkout repository
@@ -17,13 +17,14 @@ jobs:
       - name: Install SwiftFormat
         run: brew install swiftformat
 
-      - name: Run SwiftFormat (without committing)
+      - name: Run SwiftFormat and Fix Issues
         run: swiftformat .
 
-      - name: Post Formatting Suggestions to PR
-        uses: reviewdog/action-suggester@v1
-        with:
-          tool_name: SwiftFormat
-          fail_on_error: true
-          filter_mode: file
-          level: warning
+      - name: Commit and Push Fixes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add .
+          git diff --quiet && git diff --staged --quiet || git commit -m "Apply SwiftFormat fixes"
+          git push
+        continue-on-error: true
