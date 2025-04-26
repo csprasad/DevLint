@@ -8,7 +8,8 @@ DevLint is a lightweight, native macOS application designed to help developers f
 > Contributions are welcome! Feel free to submit PRs or open issues.  
 
 ## Preview
-![Custom Toolbar Demo](screenshot/App_screen.png)
+![Custom Toolbar Demo](.github/images/App_screen_light.png)
+![Custom Toolbar Demo](.github/images/App_screen_dark.png)
 
 ## 🛠 Current Features (In Progress)
 
