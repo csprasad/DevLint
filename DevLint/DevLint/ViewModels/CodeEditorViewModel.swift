@@ -50,6 +50,7 @@ if let x=Optional(5) {print(x)} // Bad spacing, `if let` should be `guard let`
     func clear() {
         inputCode = ""
         formattedCode = ""
+        updateLineNumbers()
     }
 
     func updateLineNumbers() {

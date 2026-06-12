@@ -10,6 +10,7 @@ import AppKit
 
 class ThemeManager: ObservableObject {
     @Published var currentTheme: ThemeModel
+    @AppStorage("selectedThemeName") private var selectedThemeName: String = "Default"
     @AppStorage("isDarkMode") var isDarkMode: Bool = false {
         didSet {
             updateThemeForDarkMode()
@@ -84,6 +85,8 @@ class ThemeManager: ObservableObject {
     init() {
         self.currentTheme = availableThemes[0]
         updateThemeForDarkMode()
+        setTheme(name: selectedThemeName)
+        applyAppearance()
     }
 
     /// Selects the available theme whose name matches the provided string and makes it the active theme.
@@ -92,6 +95,7 @@ class ThemeManager: ObservableObject {
     func setTheme(name: String) {
         if let newTheme = availableThemes.first(where: { $0.name == name }) {
             currentTheme = newTheme
+            selectedThemeName = name
         }
     }
 

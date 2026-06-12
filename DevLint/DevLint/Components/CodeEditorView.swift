@@ -65,7 +65,6 @@ struct CodeEditorView: NSViewRepresentable {
     ///
     /// - Parameter textView: The `NSTextView` to configure.
     private func optimizeTextView(_ textView: NSTextView) {
-        print(themeManager.currentTheme.name + "theme on text bg")
         let layoutManager = textView.layoutManager
 
         //  Enable Lazy Rendering
@@ -119,13 +118,11 @@ struct CodeEditorView: NSViewRepresentable {
     }
 
     /// Updates the given text view's colors and font when its background color differs from the current theme.
-        /// - Parameter textView: The `NSTextView` whose background color, text color, insertion point color, and font will be synchronized to the current theme if they are out of date.
-        private func updateThemeIfNeeded(for textView: NSTextView) {
-            if textView.backgroundColor != themeManager.currentTheme.backgroundColor {
-                textView.backgroundColor = themeManager.currentTheme.backgroundColor
-                textView.textColor = themeManager.currentTheme.primaryColor
-                textView.insertionPointColor = themeManager.currentTheme.primaryColor
-                textView.font = NSFont.monospacedSystemFont(ofSize: 14, weight: .regular)
-            }
-        }
+    /// - Parameter textView: The `NSTextView` whose background color, text color, insertion point color, and font will be synchronized to the current theme if they are out of date.
+    private func updateThemeIfNeeded(for textView: NSTextView) {
+        textView.backgroundColor = themeManager.currentTheme.backgroundColor
+        textView.textColor = themeManager.currentTheme.primaryColor
+        textView.insertionPointColor = themeManager.currentTheme.primaryColor
+        textView.font = NSFont.monospacedSystemFont(ofSize: 14, weight: .regular)
+    }
 }

@@ -28,7 +28,7 @@ class FormatterManager {
     func format(code: String) -> String {
         do {
             return try formatter.format(code: code)
-        } catch let error as FormatterError {
+        } catch _ as FormatterError {
             return code // Return unformatted code if formatting fails
         } catch {
             return code
