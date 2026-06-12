@@ -28,6 +28,11 @@ struct CodeEditorView: NSViewRepresentable {
         return textView
     }
 
+    /// Synchronizes the SwiftUI-bound text and theme into the given editor view while preserving the current selection.
+    /// 
+    /// Updates the view's string when it differs from the bound `text`, refreshes theme-related appearance if needed, and initiates syntax highlighting without changing the user's selection.
+    /// - Parameters:
+    ///   - textView: The `NSTextView` to update.
     func updateNSView(_ textView: NSTextView, context _: Context) {
         let selectedRange = textView.selectedRange()
         if textView.string != text {
@@ -57,7 +62,11 @@ struct CodeEditorView: NSViewRepresentable {
         }
     }
 
-    //  Apply Performance Optimizations
+    /// Configure an `NSTextView` for code-editing performance and no line wrapping.
+    /// 
+    /// Applies rendering and layout optimizations (lazy/non-contiguous layout), enables flexible resizing to improve scrolling performance, and disables line wrapping so the text container can grow horizontally without clipping lines.
+    ///
+    /// - Parameter textView: The `NSTextView` to configure.
     private func optimizeTextView(_ textView: NSTextView) {
         print(themeManager.currentTheme.name + "theme on text bg")
         let layoutManager = textView.layoutManager
@@ -79,7 +88,9 @@ struct CodeEditorView: NSViewRepresentable {
         textView.textContainer?.lineBreakMode = .byClipping
     }
 
-    //  **Asynchronous Syntax Highlighting**
+    /// Performs syntax highlighting for the given text view on a background queue and applies the resulting attributes on the main thread.
+    /// - Parameters:
+    ///   - textView: The `NSTextView` whose contents will be highlighted. The function preserves the view's current selection and will abort applying results if the text changes before updates are applied.
     private func asyncSyntaxHighlight(_ textView: NSTextView) {
         guard let textStorage = textView.textStorage else { return }
         let originalText = textStorage.string
@@ -110,7 +121,8 @@ struct CodeEditorView: NSViewRepresentable {
         }
     }
 
-    // Feat: - Update the theme dynamically if necessary (avoiding full reset) it not working properly
+    /// Updates the given text view's colors and font when its background color differs from the current theme.
+        /// - Parameter textView: The `NSTextView` whose background color, text color, insertion point color, and font will be synchronized to the current theme if they are out of date.
         private func updateThemeIfNeeded(for textView: NSTextView) {
             if textView.backgroundColor != themeManager.currentTheme.backgroundColor {
                 textView.backgroundColor = themeManager.currentTheme.backgroundColor

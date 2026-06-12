@@ -86,16 +86,23 @@ class ThemeManager: ObservableObject {
         updateThemeForDarkMode()
     }
 
+    /// Selects the available theme whose name matches the provided string and makes it the active theme.
+    /// - Parameters:
+    ///   - name: The theme name to select; must exactly match an available theme's `name` (case-sensitive). If no match is found, `currentTheme` is left unchanged.
     func setTheme(name: String) {
         if let newTheme = availableThemes.first(where: { $0.name == name }) {
             currentTheme = newTheme
         }
     }
 
+    /// Selects the active theme based on the persisted dark-mode preference.
+    /// - Details: Chooses the "Dark" theme when `isDarkMode` is true, otherwise chooses "Default".
     func updateThemeForDarkMode() {
         setTheme(name: isDarkMode ? "Dark" : "Default")
     }
 
+    /// Updates the app-wide macOS appearance to match the current dark-mode preference.
+    /// - Note: Sets `NSApp.appearance` to `.darkAqua` when `isDarkMode` is `true`, otherwise to `.aqua`.
     func applyAppearance() {
         // Force the app to use the selected appearance (dark/light)
         NSApp.appearance = NSAppearance(named: isDarkMode ? .darkAqua : .aqua)

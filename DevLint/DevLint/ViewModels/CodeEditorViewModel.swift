@@ -34,15 +34,19 @@ if let x=Optional(5) {print(x)} // Bad spacing, `if let` should be `guard let`
     @Published var lineNumbers: [Int] = Array(1 ... 50)
     @Published var formattedCode: String = ""
 
+    /// Formats the current `inputCode` and updates `formattedCode` with the formatted result.
     func formatSwiftCode() {
         formattedCode = FormatterManager.shared.format(code: inputCode)
     }
 
+    /// Copies the current formatted code to the system pasteboard, replacing any existing contents.
+    /// - Note: The code is written as plain text to the pasteboard.
     func copyToClipboard() {
         NSPasteboard.general.clearContents()
         NSPasteboard.general.setString(formattedCode, forType: .string)
     }
 
+    /// Clears the editor content and any formatted output by resetting `inputCode` and `formattedCode` to empty strings.
     func clear() {
         inputCode = ""
         formattedCode = ""

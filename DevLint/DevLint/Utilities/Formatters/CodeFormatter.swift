@@ -22,6 +22,9 @@ class FormatterManager {
         self.formatter = formatter
     }
 
+    /// Format the provided source code using the configured formatter.
+    /// - Parameter code: The source code to format.
+    /// - Returns: The formatted source code. If formatting fails, returns the original `code`.
     func format(code: String) -> String {
         do {
             return try formatter.format(code: code)

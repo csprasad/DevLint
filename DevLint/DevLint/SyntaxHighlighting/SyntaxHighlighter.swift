@@ -9,6 +9,10 @@ import AppKit
 import SwiftUI
 
 enum SyntaxHighlighter {
+    /// Apply syntax highlighting to a mutable attributed string using colors from a theme.
+    /// - Parameters:
+    ///   - attributedString: The `NSMutableAttributedString` to modify in place; its font and foreground colors will be updated to reflect syntax highlighting.
+    ///   - theme: A `ThemeModel` providing colors for syntax categories (keywords, types, strings, comments, etc.)
     static func highlight(_ attributedString: NSMutableAttributedString, using theme: ThemeModel) {
         let defaultTextColor: NSColor = theme.primaryColor
 
