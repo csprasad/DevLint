@@ -14,15 +14,12 @@ struct CodeEditorView: NSViewRepresentable {
 
     func makeNSView(context: Context) -> NSTextView {
         let textView = NSTextView()
-
-        // Configure the text view
         textView.string = text
         textView.isEditable = true
         textView.isSelectable = true
         textView.delegate = context.coordinator
         textView.usesFindBar = true
 
-        // Apply performance optimizations
         optimizeTextView(textView)
 
         return textView

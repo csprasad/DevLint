@@ -10,7 +10,7 @@ import AppKit
 
 class ThemeManager: ObservableObject {
     @Published var currentTheme: ThemeModel
-    @AppStorage("isDarkMode") var isDarkMode: Bool = false { // Persists dark mode setting
+    @AppStorage("isDarkMode") var isDarkMode: Bool = false {
         didSet {
             updateThemeForDarkMode()
             applyAppearance()

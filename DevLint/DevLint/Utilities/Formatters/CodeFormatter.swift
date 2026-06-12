@@ -29,10 +29,8 @@ class FormatterManager {
         do {
             return try formatter.format(code: code)
         } catch let error as FormatterError {
-            print(error.localizedDescription)
             return code // Return unformatted code if formatting fails
         } catch {
-            print("Unexpected formatting error: \(error.localizedDescription)")
             return code
         }
     }

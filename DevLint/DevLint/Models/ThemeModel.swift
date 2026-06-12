@@ -30,12 +30,10 @@ struct ThemeModel: Identifiable, Hashable {
     let escapeColor: NSColor
     let punctuationColor: NSColor
 
-    // Implement Hashable conformance
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)
     }
 
-    // Implement Equatable conformance
     static func == (lhs: ThemeModel, rhs: ThemeModel) -> Bool {
         lhs.id == rhs.id
     }
