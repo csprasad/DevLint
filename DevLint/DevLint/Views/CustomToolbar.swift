@@ -17,7 +17,7 @@ struct CustomToolbar: View {
                 Text("Enter Code")
                     .font(themeManager.currentTheme.font)
                 Spacer()
-                
+
                 Picker("Theme", selection: $themeManager.currentTheme) {
                     ForEach(themeManager.availableThemes) { theme in
                         Text(theme.name)
@@ -27,18 +27,21 @@ struct CustomToolbar: View {
                 .font(themeManager.currentTheme.font)
                 .pickerStyle(MenuPickerStyle())
                 .frame(width: 150)
-                
-                ToolbarButton(icon: themeManager.isDarkMode ? "sun.max.fill" : "moon.fill", tooltip: "Dark mode toggle", action: {
+
+                ToolbarButton(icon: themeManager.isDarkMode ? "sun.max.fill" : "moon.fill",
+                              tooltip: "Dark mode toggle", action: {
                     themeManager.isDarkMode.toggle()
                 })
 
-                // TODO:  Implement share button logic
+                // Feat: -  Implement share button logic
 //                ToolbarButton(icon: "square.and.arrow.up", tooltip: "Share Code", action: {
 //                    // Share Action
 //                })
 
                 HStack {
-                    //TODO: right now this toolbar buttons are only optional to icon or title later move it to support both icon & title for format button ex., icon: "wand.and.stars"
+                    // Feat: -
+                    // Right now this toolbar buttons are only optional to icon or title later
+                    // move it to support both icon & title for format button ex., icon: "wand.and.stars"
                     ToolbarButton(text: "Format", tooltip: "Format Code", action: {
                         isFormatting = true
                         viewModel.formatSwiftCode()
@@ -46,7 +49,7 @@ struct CustomToolbar: View {
                             isFormatting = false
                         }
                     })
-                    
+
                     if isFormatting {
                         ProgressView()
                             .progressViewStyle(CircularProgressViewStyle())
@@ -55,11 +58,11 @@ struct CustomToolbar: View {
                     }
                 }
             }
-            
+
             Spacer(minLength: 0)
             Divider()
             Spacer(minLength: 0)
-            
+
             HStack(spacing: 12) {
                 Text("Formatted Code")
                     .font(themeManager.currentTheme.font)

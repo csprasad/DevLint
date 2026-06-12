@@ -8,7 +8,6 @@
 import SwiftUI
 import AppKit
 
-
 // MARK: - NSColor + Extensions
 
 extension NSColor {
@@ -18,10 +17,10 @@ extension NSColor {
 
         var rgb: UInt64 = 0
 
-        var r: CGFloat = 0.0
-        var g: CGFloat = 0.0
-        var b: CGFloat = 0.0
-        var a: CGFloat = 1.0
+        var red: CGFloat = 0.0
+        var green: CGFloat = 0.0
+        var blue: CGFloat = 0.0
+        var alpha: CGFloat = 1.0
 
         let length = hexSanitized.count
 
@@ -31,27 +30,19 @@ extension NSColor {
         }
 
         if length == 6 {
-            r = CGFloat((rgb & 0xFF0000) >> 16) / 255.0
-            g = CGFloat((rgb & 0x00FF00) >> 8) / 255.0
-            b = CGFloat(rgb & 0x0000FF) / 255.0
+            red = CGFloat((rgb & 0xFF0000) >> 16) / 255.0
+            green = CGFloat((rgb & 0x00FF00) >> 8) / 255.0
+            blue = CGFloat(rgb & 0x0000FF) / 255.0
         } else if length == 8 {
-            r = CGFloat((rgb & 0xFF000000) >> 24) / 255.0
-            g = CGFloat((rgb & 0x00FF0000) >> 16) / 255.0
-            b = CGFloat((rgb & 0x0000FF00) >> 8) / 255.0
-            a = CGFloat(rgb & 0x000000FF) / 255.0
+            red = CGFloat((rgb & 0xFF000000) >> 24) / 255.0
+            green = CGFloat((rgb & 0x00FF0000) >> 16) / 255.0
+            blue = CGFloat((rgb & 0x0000FF00) >> 8) / 255.0
+            alpha = CGFloat(rgb & 0x000000FF) / 255.0
         } else {
             self.init(cgColor: defaultColor.cgColor)!
             return
         }
 
-        self.init(red: r, green: g, blue: b, alpha: a)
+        self.init(red: red, green: green, blue: blue, alpha: alpha)
     }
 }
-
-// MARK: - Color + Extensions
-extension Color {
-    init(hex: String) {
-        self.init(nsColor: NSColor(hex: hex))
-    }
-}
-

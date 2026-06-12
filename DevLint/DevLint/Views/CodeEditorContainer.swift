@@ -13,7 +13,7 @@ struct CodeEditorContainer: View {
     @State private var isFormatting = false
 
     init(themeManager: ThemeManager) {
-        let viewModel = CodeEditorViewModel(themeManager: themeManager)
+        let viewModel = CodeEditorViewModel()
         _viewModel = StateObject(wrappedValue: viewModel)
         self.themeManager = themeManager
     }
@@ -26,7 +26,7 @@ struct CodeEditorContainer: View {
                 .background(Color(NSColor.windowBackgroundColor))
                 .overlay(Divider(), alignment: .top)
                 .overlay(Divider(), alignment: .bottom)
-            
+
             HStack(spacing: 1) {
                 CodeInputView(viewModel: viewModel, themeManager: themeManager)
                 CodeOutputView(viewModel: viewModel, themeManager: themeManager)

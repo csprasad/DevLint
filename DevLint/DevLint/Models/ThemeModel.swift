@@ -11,7 +11,6 @@ struct ThemeModel: Identifiable, Hashable {
     let id = UUID()
     let name: String
     let primaryColor: NSColor
-    let secondaryColor: NSColor
     let backgroundColor: NSColor
     let font: Font
 

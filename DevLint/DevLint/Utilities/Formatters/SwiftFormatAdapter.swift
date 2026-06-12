@@ -7,7 +7,7 @@
 
 import SwiftFormat
 
-//MARK: - SwiftFormat Adapter (Nick Lockwood's SwiftFormat)
+// MARK: - SwiftFormat Adapter (Nick Lockwood's SwiftFormat)
 class SwiftFormatAdapter: CodeFormatter {
     func format(code: String) throws -> String {
         do {

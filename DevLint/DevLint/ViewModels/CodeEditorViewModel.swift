@@ -32,12 +32,7 @@ if let x=Optional(5) {print(x)} // Bad spacing, `if let` should be `guard let`
 
 """
     @Published var lineNumbers: [Int] = Array(1 ... 50)
-    @Published var themeManager: ThemeManager
     @Published var formattedCode: String = ""
-
-    init(themeManager: ThemeManager) {
-        self.themeManager = themeManager
-    }
 
     func formatSwiftCode() {
         formattedCode = FormatterManager.shared.format(code: inputCode)
@@ -47,7 +42,7 @@ if let x=Optional(5) {print(x)} // Bad spacing, `if let` should be `guard let`
         NSPasteboard.general.clearContents()
         NSPasteboard.general.setString(formattedCode, forType: .string)
     }
-    
+
     func clear() {
         inputCode = ""
         formattedCode = ""
