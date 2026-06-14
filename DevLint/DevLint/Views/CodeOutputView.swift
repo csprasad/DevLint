@@ -16,7 +16,7 @@ struct CodeOutputView: View {
             text: $viewModel.formattedCode,
             isEditable: false,
             themeManager: themeManager,
-            lineNumbers: $viewModel.lineNumbers // ❗️ You might need a separate list for output line numbers
+            lineNumbers: $viewModel.lineNumbers
         )
     }
 }

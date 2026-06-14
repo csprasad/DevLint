@@ -8,23 +8,20 @@
 import SwiftUI
 import AppKit
 
-
 class ThemeManager: ObservableObject {
     @Published var currentTheme: ThemeModel
-    @AppStorage("selectedThemeName") var selectedTheme: String = "Default"
-    @AppStorage("isDarkMode") var isDarkMode: Bool = false { // Persists dark mode setting
+    @AppStorage("selectedThemeName") private var selectedThemeName: String = "Default"
+    @AppStorage("isDarkMode") var isDarkMode: Bool = false {
         didSet {
             updateThemeForDarkMode()
             applyAppearance()
         }
     }
-    
 
     let availableThemes: [ThemeModel] = [
         ThemeModel(
             name: "Default",
             primaryColor: NSColor.black,
-            secondaryColor: NSColor.gray,
             backgroundColor: NSColor.white,
             font: .system(size: 14, weight: .regular, design: .monospaced),
             keywordColor: NSColor(hex: "#7089DA"),
@@ -45,10 +42,9 @@ class ThemeManager: ObservableObject {
         ThemeModel(
             name: "Dark",
             primaryColor: NSColor(hex: "#D9D9D9"),  // Light gray for readability
-            secondaryColor: NSColor(hex: "#2C2C2C"), // Dark secondary color
             backgroundColor: NSColor(hex: "#1D1F21"), // Dark background
             font: .system(size: 14, weight: .regular, design: .monospaced),
-            
+
             keywordColor: NSColor(hex: "#C678DD"),     // Purple for keywords
             typeColor: NSColor(hex: "#56B6C2"),        // Cyan for types
             operatorColor: NSColor(hex: "#E06C75"),    // Red for operators
@@ -67,7 +63,6 @@ class ThemeManager: ObservableObject {
         ThemeModel(
             name: "Solarized",
             primaryColor: NSColor.yellow,
-            secondaryColor: NSColor.green,
             backgroundColor: NSColor(red: 0.99, green: 0.96, blue: 0.89, alpha: 1),
             font: .system(size: 14, weight: .regular, design: .monospaced),
             keywordColor: NSColor(hex: "#268BD2"),
@@ -84,25 +79,34 @@ class ThemeManager: ObservableObject {
             preprocessorColor: NSColor(hex: "#D33682"),
             escapeColor: NSColor(hex: "#B58900"),
             punctuationColor: NSColor(hex: "#93A1A1")
-        ),
+        )
     ]
 
     init() {
         self.currentTheme = availableThemes[0]
         updateThemeForDarkMode()
+        setTheme(name: selectedThemeName)
+        applyAppearance()
     }
 
+    /// Selects the available theme whose name matches the provided string and makes it the active theme.
+    /// - Parameters:
+    ///   - name: The theme name to select; must exactly match an available theme's `name` (case-sensitive). If no match is found, `currentTheme` is left unchanged.
     func setTheme(name: String) {
         if let newTheme = availableThemes.first(where: { $0.name == name }) {
             currentTheme = newTheme
-            selectedTheme = name
+            selectedThemeName = name
         }
     }
 
+    /// Selects the active theme based on the persisted dark-mode preference.
+    /// - Details: Chooses the "Dark" theme when `isDarkMode` is true, otherwise chooses "Default".
     func updateThemeForDarkMode() {
         setTheme(name: isDarkMode ? "Dark" : "Default")
     }
-    
+
+    /// Updates the app-wide macOS appearance to match the current dark-mode preference.
+    /// - Note: Sets `NSApp.appearance` to `.darkAqua` when `isDarkMode` is `true`, otherwise to `.aqua`.
     func applyAppearance() {
         // Force the app to use the selected appearance (dark/light)
         NSApp.appearance = NSAppearance(named: isDarkMode ? .darkAqua : .aqua)

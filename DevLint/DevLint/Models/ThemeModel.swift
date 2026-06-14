@@ -11,7 +11,6 @@ struct ThemeModel: Identifiable, Hashable {
     let id = UUID()
     let name: String
     let primaryColor: NSColor
-    let secondaryColor: NSColor
     let backgroundColor: NSColor
     let font: Font
 
@@ -31,12 +30,10 @@ struct ThemeModel: Identifiable, Hashable {
     let escapeColor: NSColor
     let punctuationColor: NSColor
 
-    // Implement Hashable conformance
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)
     }
 
-    // Implement Equatable conformance
     static func == (lhs: ThemeModel, rhs: ThemeModel) -> Bool {
         lhs.id == rhs.id
     }

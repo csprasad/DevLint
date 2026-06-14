@@ -9,7 +9,11 @@ import AppKit
 import SwiftUI
 
 enum SyntaxHighlighter {
-    static func highlight(_ attributedString: NSMutableAttributedString, _ appearance: NSAppearance?, using theme: ThemeModel) {
+    /// Apply syntax highlighting to a mutable attributed string using colors from a theme.
+    /// - Parameters:
+    ///   - attributedString: The `NSMutableAttributedString` to modify in place; its font and foreground colors will be updated to reflect syntax highlighting.
+    ///   - theme: A `ThemeModel` providing colors for syntax categories (keywords, types, strings, comments, etc.)
+    static func highlight(_ attributedString: NSMutableAttributedString, using theme: ThemeModel) {
         let defaultTextColor: NSColor = theme.primaryColor
 
         let text = attributedString.string
@@ -22,7 +26,9 @@ enum SyntaxHighlighter {
 
         let patterns: [(String, NSColor)] = [
             // Keywords (Functions, Control Flow, Declarations)
-            ("\\b(import|struct|class|let|var|func|return|if|else|while|for|switch|case|break|continue|enum|protocol|extension|defer|do|try|catch|throw)\\b", theme.keywordColor),
+            ("\\b(import|struct|class|let|var|func|return|if|else|while|for|switch|case|"
+             + "break|continue|enum|protocol|extension|defer|do|try|catch|throw)\\b",
+             theme.keywordColor),
 
             // Type Names (Swift Built-in Types)
             ("\\b(Int|Double|Float|String|Bool|Array|Dictionary|Set|Optional)\\b", theme.typeColor),
@@ -47,7 +53,8 @@ enum SyntaxHighlighter {
             ("@\\b(available|discardableResult|objc|State|Environment|Published|Binding)\\b", theme.attributeColor),
 
             // Preprocessor Directives (#if, #else, #endif)
-            ("#\\b(if|else|elseif|endif|warning|error|selector|function|line|file|sourceLocation)\\b", theme.preprocessorColor),
+            ("#\\b(if|else|elseif|endif|warning|error|selector|"
+             + "function|line|file|sourceLocation)\\b", theme.preprocessorColor),
 
             // Escape Sequences (\n, \t, Unicode Characters)
             ("\\\\(n|t|r|0|u\\{[0-9A-Fa-f]+\\})", theme.escapeColor),
@@ -59,10 +66,10 @@ enum SyntaxHighlighter {
             ("\\bcase\\s+[a-zA-Z_][a-zA-Z0-9_]*", theme.enumColor),
 
             // Struct, Class, Protocol Names
-            ("\\b(struct|class|protocol)\\s+[A-Za-z_][A-Za-z0-9_]*",theme.structColor),
+            ("\\b(struct|class|protocol)\\s+[A-Za-z_][A-Za-z0-9_]*", theme.structColor),
 
             // Braces, Parentheses, Commas, Semicolons
-            ("[{}\\[\\](),;:]", theme.punctuationColor),
+            ("[{}\\[\\](),;:]", theme.punctuationColor)
         ]
 
         for (pattern, color) in patterns {

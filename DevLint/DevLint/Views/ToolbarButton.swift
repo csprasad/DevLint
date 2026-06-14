@@ -12,7 +12,7 @@ struct ToolbarButton: View {
     var text: String?
     var tooltip: String
     var action: () -> Void
-    
+
     var body: some View {
         Button(action: action) {
             if let icon = icon {

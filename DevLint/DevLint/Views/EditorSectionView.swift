@@ -22,7 +22,7 @@ struct EditorSectionView: View {
                     // Line numbers
                     LineNumbersView(lineNumbers: $lineNumbers, themeManager: themeManager)
                         .padding(.zero)
-                    
+
                     // Code Editor
                     CodeEditorView(text: $text, themeManager: themeManager)
                         .font(themeManager.currentTheme.font)

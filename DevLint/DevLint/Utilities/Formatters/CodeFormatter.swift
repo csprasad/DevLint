@@ -7,12 +7,12 @@
 
 import Foundation
 
-//MARK: - CodeFormatter Protocol to make formatting engine replaceable
+// MARK: - CodeFormatter Protocol to make formatting engine replaceable
 protocol CodeFormatter {
     func format(code: String) throws -> String
 }
 
-//MARK: - Formatter Manager to allow easy switching
+// MARK: - Formatter Manager to allow easy switching
 class FormatterManager {
     static let shared = FormatterManager()
 
@@ -22,24 +22,21 @@ class FormatterManager {
         self.formatter = formatter
     }
 
-    func setFormatter(_ newFormatter: CodeFormatter) {
-        self.formatter = newFormatter
-    }
-
+    /// Format the provided source code using the configured formatter.
+    /// - Parameter code: The source code to format.
+    /// - Returns: The formatted source code. If formatting fails, returns the original `code`.
     func format(code: String) -> String {
         do {
             return try formatter.format(code: code)
-        } catch let error as FormatterError {
-            print(error.localizedDescription)
+        } catch _ as FormatterError {
             return code // Return unformatted code if formatting fails
         } catch {
-            print("Unexpected formatting error: \(error.localizedDescription)")
             return code
         }
     }
 }
 
-//MARK: -  Define a custom error type for format failures
+// MARK: - Define a custom error type for format failures
 enum FormatterError: Error {
     case formattingFailed(String)
 
